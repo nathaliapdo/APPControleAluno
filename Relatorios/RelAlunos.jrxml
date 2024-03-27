@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelAlunos" language="groovy" pageWidth="226" pageHeight="1417" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5f1c0700-8ce5-4e1c-9fa3-6dd2648e9005">
+	<property name="ireport.zoom" value="3.630000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="datanascimento" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="idaluno" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="3" width="186" height="11" uuid="bd7d131e-d90d-4dbf-b7a6-80fcb5adafb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório Alunos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="12" y="24" width="186" height="1" uuid="5a843026-380a-4ae1-ae2c-155d91657c56"/>
+			</line>
+			<staticText>
+				<reportElement x="12" y="14" width="22" height="8" uuid="2975408f-ed06-4d61-84b9-764599027711"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="14" width="87" height="8" uuid="fc8096ff-1c4f-436a-8c45-9d4676bb0d3b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="14" width="49" height="8" uuid="7d8ae417-e320-4d7e-8d71-1b9a878f3655"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Nascimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="14" width="28" height="8" uuid="a55a656f-6473-4748-8ed2-41c0021d97e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="11" splitType="Stretch">
+			<textField>
+				<reportElement x="34" y="1" width="87" height="8" uuid="b5834527-dff4-4049-b178-28422facdbbb"/>
+				<textElement textAlignment="Justified">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="1" width="49" height="8" uuid="75da15d5-b65b-4194-85d1-d1f28c8b8020"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datanascimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="1" width="28" height="8" uuid="c08001f7-9fdf-4905-9447-bbefb4e33e11"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="1" width="22" height="8" uuid="28f4af24-e773-4b6b-89eb-6d40faf63291"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idaluno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="7" splitType="Stretch"/>
+	</summary>
+</jasperReport>
