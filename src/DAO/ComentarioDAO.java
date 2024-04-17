@@ -1,7 +1,7 @@
+
 package DAO;
 
-import TO.AlunoTO;
-import TO.ProfessorTO;
+import TO.ComentarioTO;
 
 
 import db.DaoException;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ProfessorDAO {
+public class ComentarioDAO {
 
     java.util.Date hoje = new java.util.Date();
 
@@ -23,19 +23,21 @@ public class ProfessorDAO {
     }
 
 
-    public static int inserirProfessor(ProfessorTO to) throws DaoException {
+    public static int inserirComentario (ComentarioTO to) throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
         String INSERT_SQL
-                = "INSERT INTO professor "
-                + "(nome, materia) "
-                + "VALUES('" + to.getNome()+ "',"
-                + " '" + to.getMateria()+ "') ";
+                = "INSERT INTO comentario "
+                + "(idAluno,nome, data, comentario) "
+                + "VALUES('" + to.getIdAluno()+ "',"
+                + " '" + to.getNome()+ "'," 
+                + " '" + to.getData()+ "'," 
+                + " '" + to.getComentario()+ "') ";
         try {
             con = getConnection();
             ps = con.prepareStatement(INSERT_SQL);
             ps.executeUpdate();
-            ps = con.prepareStatement("SELECT LAST_INSERT_ID() FROM professor");
+            ps = con.prepareStatement("SELECT LAST_INSERT_ID() FROM comentario");
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -56,10 +58,10 @@ public class ProfessorDAO {
 
     
 
-    public static void deletarProfessor(ProfessorTO to) throws DaoException {
+    public static void deletarComentario(ComentarioTO to) throws DaoException {
         Connection con;
         PreparedStatement ps;
-        String DELETE_SQL = "DELETE FROM professor WHERE idprofessor = '" + to.getIdprofessor()+ "'";
+        String DELETE_SQL = "DELETE FROM comentario WHERE idcomentario = '" + to.getIdcomentario()+ "'";
         try {
             con = getConnection();
             ps = con.prepareStatement(DELETE_SQL);
@@ -71,13 +73,16 @@ public class ProfessorDAO {
         }
     }
 
-    public static void alterarProfessor (ProfessorTO to) throws DaoException {
+    public static void alterarComentario (ComentarioTO to) throws DaoException {
         Connection con;
         PreparedStatement ps;
-        String UPDATE_SQL = "UPDATE professor SET  "
+        String UPDATE_SQL = "UPDATE comentario SET  "
+                + "idAluno = " + to.getIdAluno()+ ", "
                 + "nome = '" + to.getNome()+ "', "
-                + "materia = '" + to.getMateria()+ "' "
-                + "WHERE idprofessor  = " + to.getIdprofessor();
+                + "data = '" + to.getData()+ "', "
+                + "comentario = '" + to.getComentario()+ "' "                
+                + "WHERE idcomentario  = " + to.getIdcomentario();
+
         try {
             con = getConnection();
             ps = con.prepareStatement(UPDATE_SQL);
@@ -89,19 +94,19 @@ public class ProfessorDAO {
         }
     }
 
-    public static ArrayList<ProfessorTO> buscaProfessor(String parteNome) throws DaoException {
+    public static ArrayList<ComentarioTO> buscaComentario(String parteNome) throws DaoException {
         Connection con;
         PreparedStatement ps;
         try {
-            String sql = "SELECT * FROM professor WHERE (UPPER(nome) LIKE UPPER('%" + parteNome + "%')) ORDER BY nome";
+            String sql = "SELECT * FROM comentario WHERE (UPPER(nome) LIKE UPPER('%" + parteNome + "%')) ORDER BY nome";
             con = getConnection();
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            ArrayList<ProfessorTO> td = new ArrayList<>();
+            ArrayList<ComentarioTO> td = new ArrayList<>();
 
             while (rs.next()) {
-                ProfessorTO to = new ProfessorTO();
+                ComentarioTO to = new ComentarioTO();
                 toset(rs, to);
                 td.add(to);
             }
@@ -114,16 +119,16 @@ public class ProfessorDAO {
         }
     }
 
-    public static ProfessorTO detalharProfessor(int idProf) throws DaoException {
+    public static ComentarioTO detalharComentario(int idComent) throws DaoException {
         Connection con;
         PreparedStatement ps;
         try {
-            String DETALHAR_SQL = "SELECT * FROM professor WHERE BINARY idprofessor = " + idProf ;
+            String DETALHAR_SQL = "SELECT * FROM comentario WHERE BINARY idcomentario = " + idComent ;
             con = getConnection();
             ps = con.prepareStatement(DETALHAR_SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ProfessorTO to = new ProfessorTO();
+                ComentarioTO to = new ComentarioTO();
                 toset(rs, to);
                 con.close();
                 ps.close();
@@ -136,16 +141,16 @@ public class ProfessorDAO {
             throw new DaoException(e);
         }
     }
-        public static ProfessorTO detalharProfessorNome(String nome) throws DaoException {
+    public static ComentarioTO detalharComentarioNome(String nome) throws DaoException {
         Connection con;
         PreparedStatement ps;
         try {
-            String DETALHAR_SQL = "SELECT * FROM professor WHERE BINARY nome LIKE '%" + nome + "%'";
+            String DETALHAR_SQL = "SELECT * FROM comentario WHERE BINARY nome LIKE '%" + nome + "%'";
             con = getConnection();
             ps = con.prepareStatement(DETALHAR_SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ProfessorTO to = new ProfessorTO();
+                ComentarioTO to = new ComentarioTO();
                 toset(rs, to);
                 con.close();
                 ps.close();
@@ -158,11 +163,12 @@ public class ProfessorDAO {
             throw new DaoException(e);
         }
     }
-
-    private static void toset(ResultSet rs, ProfessorTO to) throws DaoException, SQLException {
-        to.setIdprofessor(rs.getInt("idprofessor"));
+    private static void toset(ResultSet rs, ComentarioTO to) throws DaoException, SQLException {
+        to.setIdcomentario(rs.getInt("idcomentario"));
+        to.setIdAluno(rs.getInt("idAluno"));
         to.setNome(rs.getString("nome"));
-        to.setMateria(rs.getString("materia"));
+        to.setData(rs.getString("data"));
+        to.setComentario(rs.getString("Comentario"));
     }
 
 

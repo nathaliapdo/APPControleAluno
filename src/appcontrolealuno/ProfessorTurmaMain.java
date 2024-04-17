@@ -5,8 +5,11 @@
 package appcontrolealuno;
 
 import DAO.AlunoDAO;
+import DAO.ProfessorDAO;
 import DAO.TurmaDAO;
 import TO.AlunoTO;
+import TO.ProfessorTO;
+import TO.ProfessorTurmaTO;
 import TO.TurmaAlunoTO;
 import TO.TurmaTO;
 import db.DaoException;
@@ -44,28 +47,28 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author desenv01
  */
-public class TurmaAlunoMain extends javax.swing.JInternalFrame {
+public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
 
     private static final long serialVersionUID = -2809442742901146299L;
 
     String titulo = "";
-    int qtdDeAlunos = 0;
+    int qtdDeTurma = 0;
 
     private DefaultTableModel getTableModel() {
-        return (DefaultTableModel) jTableTurmaAluno.getModel();
+        return (DefaultTableModel) jTableProfessorTurma.getModel();
     }
 
     /**
      * Creates new form AppGProtEl
      */
-    public TurmaAlunoMain() {
+    public ProfessorTurmaMain() {
 
         initComponents();
         this.setEnabled(true);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                jTxtCodigoTurma.requestFocus();
+                jTxtNomeProfessor.requestFocus();
             }
         });
 
@@ -85,25 +88,25 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
         jButton7 = new javax.swing.JButton();
         jDesktopPane = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableTurmaAluno = new javax.swing.JTable();
+        jTableProfessorTurma = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jTxtDataNascimento = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButtonDinheiro = new javax.swing.JButton();
-        jTxtNome = new javax.swing.JTextField();
+        jTxtTurma = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButtonConfirmaAluno = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jTxtSexo = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jTxtCodigoTurma = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonConfirmaTurma = new javax.swing.JButton();
         jTxtSerie = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTxtNomeProfessor = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jTxtMateria = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTxtidAluno = new javax.swing.JTextField();
+        jTxtidTurma = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTxtidProf = new javax.swing.JTextField();
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton6.setText("008");
@@ -156,63 +159,51 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
 
         jDesktopPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTableTurmaAluno.setAutoCreateRowSorter(true);
-        jTableTurmaAluno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTableTurmaAluno.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProfessorTurma.setAutoCreateRowSorter(true);
+        jTableProfessorTurma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTableProfessorTurma.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "idAluno", "Nome", "Sexo", " Data Nascimento"
+                "idTurma", "Turma", "Série"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTableTurmaAluno.setShowHorizontalLines(false);
-        jTableTurmaAluno.setShowVerticalLines(false);
-        jTableTurmaAluno.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableProfessorTurma.setShowHorizontalLines(false);
+        jTableProfessorTurma.setShowVerticalLines(false);
+        jTableProfessorTurma.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableTurmaAlunoMouseClicked(evt);
+                jTableProfessorTurmaMouseClicked(evt);
             }
         });
-        jTableTurmaAluno.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTableProfessorTurma.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTableTurmaAlunoKeyPressed(evt);
+                jTableProfessorTurmaKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableTurmaAluno);
-        if (jTableTurmaAluno.getColumnModel().getColumnCount() > 0) {
-            jTableTurmaAluno.getColumnModel().getColumn(0).setMinWidth(65);
-            jTableTurmaAluno.getColumnModel().getColumn(0).setPreferredWidth(65);
-            jTableTurmaAluno.getColumnModel().getColumn(0).setMaxWidth(65);
-            jTableTurmaAluno.getColumnModel().getColumn(2).setMinWidth(80);
-            jTableTurmaAluno.getColumnModel().getColumn(2).setPreferredWidth(80);
-            jTableTurmaAluno.getColumnModel().getColumn(2).setMaxWidth(80);
-            jTableTurmaAluno.getColumnModel().getColumn(3).setMinWidth(95);
-            jTableTurmaAluno.getColumnModel().getColumn(3).setPreferredWidth(95);
-            jTableTurmaAluno.getColumnModel().getColumn(3).setMaxWidth(95);
+        jScrollPane1.setViewportView(jTableProfessorTurma);
+        if (jTableProfessorTurma.getColumnModel().getColumnCount() > 0) {
+            jTableProfessorTurma.getColumnModel().getColumn(0).setMinWidth(65);
+            jTableProfessorTurma.getColumnModel().getColumn(0).setPreferredWidth(65);
+            jTableProfessorTurma.getColumnModel().getColumn(0).setMaxWidth(65);
+            jTableProfessorTurma.getColumnModel().getColumn(2).setMinWidth(80);
+            jTableProfessorTurma.getColumnModel().getColumn(2).setPreferredWidth(80);
+            jTableProfessorTurma.getColumnModel().getColumn(2).setMaxWidth(80);
         }
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Cadastro de Alunos por Turma");
+        jLabel5.setText("Cadastro de Turma por Professor");
 
-        jTxtDataNascimento.setEditable(false);
-        jTxtDataNascimento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTxtDataNascimento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTxtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtDataNascimentoActionPerformed(evt);
-            }
-        });
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("Sair");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,8 +216,9 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonDinheiro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonDinheiro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonDinheiro.setText("Confirma entrada");
+        jButtonDinheiro.setActionCommand("Confirma ");
         jButtonDinheiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDinheiroActionPerformed(evt);
@@ -238,26 +230,26 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
             }
         });
 
-        jTxtNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTxtNome.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTxtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTxtTurma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTxtTurma.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTxtTurma.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTxtNomeFocusGained(evt);
+                jTxtTurmaFocusGained(evt);
             }
         });
-        jTxtNome.addActionListener(new java.awt.event.ActionListener() {
+        jTxtTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtNomeActionPerformed(evt);
+                jTxtTurmaActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Sexo:");
+        jLabel6.setText("Série....:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("idAluno:");
+        jLabel8.setText("idTurma:");
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -266,48 +258,16 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
             }
         });
 
-        jButtonConfirmaAluno.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButtonConfirmaAluno.setText("Confirma aluno");
-        jButtonConfirmaAluno.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConfirmaTurma.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButtonConfirmaTurma.setText("Confirma turma");
+        jButtonConfirmaTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfirmaAlunoActionPerformed(evt);
+                jButtonConfirmaTurmaActionPerformed(evt);
             }
         });
-        jButtonConfirmaAluno.addKeyListener(new java.awt.event.KeyAdapter() {
+        jButtonConfirmaTurma.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButtonConfirmaAlunoKeyPressed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("Nasc.:");
-
-        jTxtSexo.setEditable(false);
-        jTxtSexo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTxtSexo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTxtSexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtSexoActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("Turma:");
-
-        jTxtCodigoTurma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTxtCodigoTurma.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTxtCodigoTurma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCodigoTurmaActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("jButton1");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonConfirmaTurmaKeyPressed(evt);
             }
         });
 
@@ -320,156 +280,204 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel11.setText("Professor:");
+
+        jTxtNomeProfessor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTxtNomeProfessor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTxtNomeProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtNomeProfessorActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton1");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTxtMateria.setEditable(false);
+        jTxtMateria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTxtMateria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTxtMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtMateriaActionPerformed(evt);
+            }
+        });
+
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setText("Série:");
+        jLabel12.setText("Matéria...:");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel13.setText("Nome:");
+        jLabel13.setText("Turma..:");
 
-        jTxtidAluno.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTxtidAluno.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTxtidAluno.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTxtidTurma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTxtidTurma.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTxtidTurma.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTxtidAlunoFocusGained(evt);
+                jTxtidTurmaFocusGained(evt);
             }
         });
-        jTxtidAluno.addActionListener(new java.awt.event.ActionListener() {
+        jTxtidTurma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtidAlunoActionPerformed(evt);
+                jTxtidTurmaActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel14.setText("idProf.....:");
+
+        jTxtidProf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTxtidProf.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTxtidProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtidProfActionPerformed(evt);
             }
         });
 
         jDesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jTxtDataNascimento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jButtonDinheiro, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jTxtNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jTxtTurma, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jButtonConfirmaAluno, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jTxtSexo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jTxtCodigoTurma, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jButtonConfirmaTurma, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jTxtSerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jTxtNomeProfessor, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jTxtMateria, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jTxtidAluno, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jTxtidTurma, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jTxtidProf, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonConfirmaTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel8))
+                                        .addGap(17, 17, 17)
+                                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                                .addComponent(jTxtidTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jTxtSerie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                                .addComponent(jTxtTurma, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                        .addComponent(jButtonDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11))
                         .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                .addGap(105, 105, 105)
-                                .addComponent(jButtonConfirmaAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(23, 23, 23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                        .addComponent(jTxtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(163, 163, 163))
-                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                        .addComponent(jTxtSexo, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                        .addGap(121, 121, 121))
-                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                        .addComponent(jTxtNome)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButtonDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTxtidAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(134, 134, 134))
-                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel12))
-                                    .addComponent(jLabel11))
-                                .addGap(27, 27, 27)
-                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                        .addComponent(jTxtCodigoTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTxtidProf, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTxtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jTxtNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(428, 428, 428)))
+                        .addContainerGap(78, Short.MAX_VALUE))))
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTxtCodigoTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTxtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12))
-                                .addGap(50, 50, 50))
-                            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtidAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(32, 32, 32)
                         .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtidProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jTxtNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(3, 3, 3)
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jTxtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel12)))
+                        .addGap(42, 42, 42)
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTxtidTurma)
+                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jTxtTurma)))
                         .addGap(6, 6, 6)
                         .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTxtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTxtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonConfirmaAluno)
-                        .addGap(18, 18, Short.MAX_VALUE)
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jTxtSerie)))
+                        .addGap(39, 39, 39)
+                        .addComponent(jButtonConfirmaTurma)
+                        .addGap(54, 54, 54)
                         .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))))
+                        .addGap(83, 83, 83))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -506,28 +514,27 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton7KeyPressed
 
 
-    private void jTxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNomeActionPerformed
-        // Busca nome do aluno e coloca descricao e pula para quantidade:
-        if (!jTxtNome.getText().equals("")) {
+    private void jTxtTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTurmaActionPerformed
+        // Busca nome da turma e coloca descricao e pula para quantidade:
+        if (!jTxtTurma.getText().equals("")) {
             // localiza turma pelo numero
-            AlunoTO aluno = new AlunoTO();
+            TurmaTO turma = new TurmaTO();
             try {
                 //detalhar aluno
-                aluno = AlunoDAO.detalharAlunoNome(jTxtNome.getText());
+                turma = TurmaDAO.detalharTurmaNumero(jTxtTurma.getText());
             } catch (DaoException ex) {
-                Logger.getLogger(TurmaAlunoMain.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProfessorTurmaMain.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, ex.getMessage() + " \nErro consulta BD!");
-                jTxtCodigoTurma.requestFocus();
+                jTxtNomeProfessor.requestFocus();
             }
-            if (aluno == null) {
-                JOptionPane.showMessageDialog(this, "Aluno " + jTxtNome.getText() + " \nNão cadastrado!");
-                jTxtNome.requestFocus();
+            if (turma == null) {
+                JOptionPane.showMessageDialog(this, "Turma " + jTxtTurma.getText() + " \nNão cadastrada!");
+                jTxtTurma.requestFocus();
                 return;
             } else {
-                jTxtidAluno.setText(String.valueOf(aluno.getIdaluno()));
-                jTxtNome.setText(aluno.getNome());
-                jTxtSexo.setText(aluno.getSexo());
-                jTxtDataNascimento.setText(aluno.getDatanascimento());
+                jTxtidTurma.setText(String.valueOf(turma.getIdturma()));
+                jTxtTurma.setText(turma.getNumeroturma());
+                jTxtSerie.setText(turma.getSerie());
             }
             //sua internet caiu? Meu celular acabpi a bateria kkkkk ok  Roda ai... 
             //não está trazendo o nome do aluno 
@@ -535,15 +542,15 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                jTxtNome.setBackground(new Color(255, 0, 102));
-                jTxtNome.requestFocus();
+                jTxtTurma.setBackground(new Color(255, 0, 102));
+                jTxtTurma.requestFocus();
             }
         });
-    }//GEN-LAST:event_jTxtNomeActionPerformed
+    }//GEN-LAST:event_jTxtTurmaActionPerformed
 
     private void inicioGravacaoTurmaAluno() throws NumberFormatException, HeadlessException {
         
-        // Pede confirmação a criação turma aluno
+        // Pede confirmação a criação professor|turma
         Object[] options = {"Sim", "Não"};
         int q = JOptionPane.showOptionDialog(null,
                 "Confirma Criação da Turma ?", "Saída",
@@ -554,38 +561,38 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
             // Monta array objetos para gravar
             // Declarar Movimento TO
 
-            ArrayList<TurmaAlunoTO> ta = new ArrayList<>();
-            System.out.println("+++++ fora " + qtdDeAlunos);
-            for (int i = 1; i <= qtdDeAlunos; i++) {
-                System.out.println("+++++ dentro " + jTableTurmaAluno.getValueAt(i, 0).toString());
-                TurmaAlunoTO to = new TurmaAlunoTO();
-                to.setIdturma(Integer.parseInt(jTxtCodigoTurma.getText()));
-                to.setSerie(jTxtSerie.getText());
-                to.setIdaluno(Integer.parseInt(jTableTurmaAluno.getValueAt(i, 0).toString()));
-                to.setNome(jTableTurmaAluno.getValueAt(i, 1).toString());
-                to.setSexo(jTableTurmaAluno.getValueAt(i, 2).toString());
-                to.setDatanascimento(jTableTurmaAluno.getValueAt(i, 3).toString());
+            ArrayList<ProfessorTurmaTO> ta = new ArrayList<>();
+            System.out.println("+++++ fora " + qtdDeTurma);
+            for (int i = 1; i <= qtdDeTurma; i++) {
+                System.out.println("+++++ i =  " + i );
+                System.out.println("+++++ dentro " + jTableProfessorTurma.getValueAt(i, 0).toString());
+                ProfessorTurmaTO to = new ProfessorTurmaTO();
+                to.setIdprofessor(Integer.parseInt(jTxtidProf.getText()));
+                to.setNome(jTxtNomeProfessor.getText());
+                to.setMateria(jTxtMateria.getText());
+                to.setIdturma(Integer.parseInt(jTableProfessorTurma.getValueAt(i, 0).toString()));
+                to.setNumeroturma(jTableProfessorTurma.getValueAt(i, 1).toString());
+                to.setSerie(jTableProfessorTurma.getValueAt(i, 2).toString());
                 ta.add(to);
             }
             
             //ArrayList<RelEntradaTO> relEntrada;
             try {
                 //Grava dados no banco
-                DAO.TurmaAlunoDAO.inserirTurmaAluno(ta);
-                            } catch (DaoException | SQLException ex) {
-                Logger.getLogger(TurmaAlunoMain.class.getName()).log(Level.SEVERE, null, ex);
+                DAO.ProfessorTurmaDAO.inserirProfessorTurma(ta); 
+                } catch (DaoException | SQLException ex) {
+                Logger.getLogger(ProfessorTurmaMain.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Erro ao gravar entrada");
                 return;
             }
 
             // limpa campos da tela
             getTableModel().setRowCount(0);
-            jTxtCodigoTurma.setText("");
+            jTxtNomeProfessor.setText("");
+            jTxtMateria.setText("");
+            jTxtidTurma.setText("");
+            jTxtTurma.setText("");
             jTxtSerie.setText("");
-            jTxtidAluno.setText("");
-            jTxtNome.setText("");
-            jTxtSexo.setText("");
-            jTxtDataNascimento.setText("");
             // Imprime tiket venda
             /*
             try {
@@ -632,11 +639,7 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTxtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtDataNascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtDataNascimentoActionPerformed
-
-    private void jTableTurmaAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTurmaAlunoMouseClicked
+    private void jTableProfessorTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProfessorTurmaMouseClicked
        /*
         Double total = Double.valueOf(jTxtTotalGeral.getText());
         Double excluido = Double.valueOf(jTableMovCx.getValueAt(jTableMovCx.getSelectedRow(), 4).toString());
@@ -647,9 +650,9 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
             jLabelItem.setText("Item");
         }
         */
-    }//GEN-LAST:event_jTableTurmaAlunoMouseClicked
+    }//GEN-LAST:event_jTableProfessorTurmaMouseClicked
 
-    private void jTableTurmaAlunoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableTurmaAlunoKeyPressed
+    private void jTableProfessorTurmaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableProfessorTurmaKeyPressed
        /*
         Double total = Double.valueOf(jTxtTotalGeral.getText());
         Double excluido = Double.valueOf(jTableMovCx.getValueAt(jTableMovCx.getSelectedRow(), 4).toString());
@@ -660,7 +663,7 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
             jLabelItem.setText("Item");
         }
         */
-    }//GEN-LAST:event_jTableTurmaAlunoKeyPressed
+    }//GEN-LAST:event_jTableProfessorTurmaKeyPressed
 
     private void jButtonDinheiroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonDinheiroKeyPressed
         inicioGravacaoTurmaAluno();
@@ -697,81 +700,81 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
         */
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTxtNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtNomeFocusGained
-        jTxtNome.setBackground(new Color(255, 0, 102));
+    private void jTxtTurmaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtTurmaFocusGained
+        jTxtTurma.setBackground(new Color(255, 0, 102));
      //   jTxtQtd.setBackground(jTxtDataNascimento.getBackground());
-    }//GEN-LAST:event_jTxtNomeFocusGained
+    }//GEN-LAST:event_jTxtTurmaFocusGained
 
-    private void jButtonConfirmaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmaAlunoActionPerformed
-            TurmaAlunoTO it;
-            if (jTxtCodigoTurma.getText().equals("")) {
+    private void jButtonConfirmaTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmaTurmaActionPerformed
+            ProfessorTurmaTO it;
+            if (jTxtNomeProfessor.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Falta professor!");
+                jTxtNomeProfessor.requestFocus();
+                return;
+            }
+            if (jTxtidTurma.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Falta turma!");
-                jTxtCodigoTurma.requestFocus();
+                jTxtidTurma.requestFocus();
                 return;
             }
-            if (jTxtidAluno.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Falta aluno!");
-                jTxtidAluno.requestFocus();
-                return;
-            }
-            String[] rowData = new String[4];
-            rowData[0] = jTxtidAluno.getText();
-            rowData[1] = jTxtNome.getText();
-            rowData[2] = jTxtSexo.getText();
-            rowData[3] = jTxtDataNascimento.getText();
+            String[] rowData = new String[3];
+            rowData[0] = jTxtidTurma.getText();
+            rowData[1] = jTxtTurma.getText();
+            rowData[2] = jTxtSerie.getText();
             
             getTableModel().addRow(rowData);
                         
-            jTxtidAluno.setText("");
-            jTxtCodigoTurma.setBackground(new Color(255, 0, 102));
-            jTxtNome.setText("");
-            jTxtSexo.setText("");
-            jTxtDataNascimento.setText("");
+            jTxtidTurma.setText("");
+            jTxtNomeProfessor.setBackground(new Color(255, 0, 102));
+            jTxtTurma.setText("");
+            jTxtSerie.setText("");
 
-            qtdDeAlunos = qtdDeAlunos + 1;
+            qtdDeTurma = qtdDeTurma + 1;
             
             // Foco no código
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    jTxtidAluno.setBackground(new Color(255, 0, 102));
-                    jTxtidAluno.requestFocus();
+                    jTxtidTurma.setBackground(new Color(255, 0, 102));
+                    jTxtidTurma.requestFocus();
                 }
             });
-    }//GEN-LAST:event_jButtonConfirmaAlunoActionPerformed
+    }//GEN-LAST:event_jButtonConfirmaTurmaActionPerformed
 
-    private void jButtonConfirmaAlunoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonConfirmaAlunoKeyPressed
+    private void jButtonConfirmaTurmaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonConfirmaTurmaKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonConfirmaAlunoKeyPressed
+    }//GEN-LAST:event_jButtonConfirmaTurmaKeyPressed
 
-    private void jTxtCodigoTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodigoTurmaActionPerformed
-        if (!jTxtCodigoTurma.getText().equals("")) {
-            // localiza turma pelo numero
-            TurmaTO turma = new TurmaTO();
+    private void jTxtNomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNomeProfessorActionPerformed
+        if (!jTxtNomeProfessor.getText().equals("")) {
+            // localiza professor pelo numero
+            ProfessorTO prof = new ProfessorTO();
             try {
-                //detalhar turma
-                turma = TurmaDAO.detalharTurmaNumero(jTxtCodigoTurma.getText());
+                //detalhar professor
+                prof = ProfessorDAO.detalharProfessorNome(jTxtNomeProfessor.getText());
             } catch (DaoException ex) {
-                Logger.getLogger(TurmaAlunoMain.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ProfessorTurmaMain.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, ex.getMessage() + " \nErro consulta BD!");
-                jTxtCodigoTurma.requestFocus();
+                jTxtNomeProfessor.requestFocus();
             }
-            if (turma == null) {
-                JOptionPane.showMessageDialog(this, "Turma " + jTxtCodigoTurma.getText() + " \nNão cadastrada!");
-                jTxtCodigoTurma.requestFocus();
+            if (prof == null) {
+                JOptionPane.showMessageDialog(this, "Professor(a) " + jTxtNomeProfessor.getText() + " \nNão cadastrado(a)!");
+                jTxtNomeProfessor.requestFocus();
                 return;
             } else {
-                jTxtSerie.setText(turma.getSerie());
+                jTxtMateria.setText(prof.getMateria());
+                jTxtidProf.setText(String.valueOf(prof.getIdprofessor()));
+                jTxtNomeProfessor.setText(prof.getNome());
             }
         }
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                jTxtNome.setBackground(new Color(255, 0, 102));
-                jTxtNome.requestFocus();
+                jTxtTurma.setBackground(new Color(255, 0, 102));
+                jTxtTurma.requestFocus();
             }
         });
-    }//GEN-LAST:event_jTxtCodigoTurmaActionPerformed
+    }//GEN-LAST:event_jTxtNomeProfessorActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         /*
@@ -785,21 +788,25 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTxtSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSexoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtSexoActionPerformed
-
-    private void jTxtidAlunoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtidAlunoFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtidAlunoFocusGained
-
-    private void jTxtidAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtidAlunoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtidAlunoActionPerformed
-
     private void jTxtSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSerieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtSerieActionPerformed
+
+    private void jTxtidTurmaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtidTurmaFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtidTurmaFocusGained
+
+    private void jTxtidTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtidTurmaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtidTurmaActionPerformed
+
+    private void jTxtidProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtidProfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtidProfActionPerformed
+
+    private void jTxtMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtMateriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtMateriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -811,25 +818,25 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButtonConfirmaAluno;
+    private javax.swing.JButton jButtonConfirmaTurma;
     private javax.swing.JButton jButtonDinheiro;
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableTurmaAluno;
-    private static javax.swing.JTextField jTxtCodigoTurma;
-    private static javax.swing.JTextField jTxtDataNascimento;
-    private static javax.swing.JTextField jTxtNome;
+    private javax.swing.JTable jTableProfessorTurma;
+    private static javax.swing.JTextField jTxtMateria;
+    private static javax.swing.JTextField jTxtNomeProfessor;
     private static javax.swing.JTextField jTxtSerie;
-    private static javax.swing.JTextField jTxtSexo;
-    private static javax.swing.JTextField jTxtidAluno;
+    private static javax.swing.JTextField jTxtTurma;
+    private static javax.swing.JTextField jTxtidProf;
+    private static javax.swing.JTextField jTxtidTurma;
     // End of variables declaration//GEN-END:variables
 
 }

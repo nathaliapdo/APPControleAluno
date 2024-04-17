@@ -43,6 +43,9 @@ public class AppControleAluno extends javax.swing.JFrame {
         jMenuPrimeiraContagem1 = new javax.swing.JMenuItem();
         jMenuPrimeiraContagem2 = new javax.swing.JMenuItem();
         jMenuPrimeiraContagem3 = new javax.swing.JMenuItem();
+        jMenuPrimeiraContagem4 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuPrimeiraContagem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -146,7 +149,30 @@ public class AppControleAluno extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuPrimeiraContagem3);
 
+        jMenuPrimeiraContagem4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jMenuPrimeiraContagem4.setText("ProfessorTurma");
+        jMenuPrimeiraContagem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuPrimeiraContagem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuPrimeiraContagem4);
+
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Lançamento");
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jMenuPrimeiraContagem5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jMenuPrimeiraContagem5.setText("Comentários");
+        jMenuPrimeiraContagem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuPrimeiraContagem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuPrimeiraContagem5);
+
+        jMenuBar1.add(jMenu2);
 
         jMenu3.setText("  Sair");
         jMenu3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -192,10 +218,6 @@ public class AppControleAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7KeyPressed
 
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jMenu3MouseClicked
-
     private void jMenuPrimeiraContagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrimeiraContagemActionPerformed
         AlunoMain frm = new AlunoMain();   // Cria na memória a variável StatusClienteMain
         jPanelPrincipal.add(frm);                          // Mosta na tela principal o StatusClienteMain
@@ -233,6 +255,29 @@ public class AppControleAluno extends javax.swing.JFrame {
         frm.setLocation(x, y); // Centraliza o StatusClienteMain
         frm.setVisible(true); // Coloca o frm visível dentro do quadrado
     }//GEN-LAST:event_jMenuPrimeiraContagem3ActionPerformed
+
+    private void jMenuPrimeiraContagem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrimeiraContagem4ActionPerformed
+
+        ProfessorTurmaMain frm = new ProfessorTurmaMain();   // Cria na memória a variável StatusClienteMain
+        jPanelPrincipal.add(frm);                          // Mosta na tela principal o StatusClienteMain
+        int x = (jPanelPrincipal.getWidth() / 2) - (frm.getWidth() / 2);
+        int y = (jPanelPrincipal.getHeight() / 2) - (frm.getHeight() / 2);
+        frm.setLocation(x, y); // Centraliza o StatusClienteMain
+        frm.setVisible(true); // Coloca o frm visível dentro do quadrado
+    }//GEN-LAST:event_jMenuPrimeiraContagem4ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenuPrimeiraContagem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPrimeiraContagem5ActionPerformed
+        ComentariosMain frm = new ComentariosMain();   // Cria na memória a variável StatusClienteMain
+        jPanelPrincipal.add(frm);                          // Mosta na tela principal o StatusClienteMain
+        int x = (jPanelPrincipal.getWidth() / 2) - (frm.getWidth() / 2);
+        int y = (jPanelPrincipal.getHeight() / 2) - (frm.getHeight() / 2);
+        frm.setLocation(x, y); // Centraliza o StatusClienteMain
+        frm.setVisible(true); // Coloca o frm visível dentro do quadrado        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuPrimeiraContagem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,12 +336,15 @@ public class AppControleAluno extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuPrimeiraContagem;
     private javax.swing.JMenuItem jMenuPrimeiraContagem1;
     private javax.swing.JMenuItem jMenuPrimeiraContagem2;
     private javax.swing.JMenuItem jMenuPrimeiraContagem3;
+    private javax.swing.JMenuItem jMenuPrimeiraContagem4;
+    private javax.swing.JMenuItem jMenuPrimeiraContagem5;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelPrincipal;
     // End of variables declaration//GEN-END:variables
