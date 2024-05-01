@@ -70,7 +70,19 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
         });
 
     }
-
+    static void setDadosTurma(String turma, String serie) {
+        jTxtCodigoTurma.setText(turma);
+        jTxtSerie.setText(serie);
+        jTxtNome.requestFocus();
+    }
+    static void setDadosAluno(int idaluno, String nome, String sexo, String datanascimento) {
+        jTxtidAluno.setText(String.valueOf(idaluno));
+        jTxtNome.setText(nome);
+        jTxtSexo.setText(sexo);
+        jTxtDataNascimento.setText(datanascimento);
+        
+        jTxtNome.requestFocus();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -673,28 +685,14 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonDinheiroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     /*
-        try {
-            if (veEstoqueConsulta()) {
-                ItemMain frm = new ItemMain("EntradaFC", jTxtNome.getText().trim());
-                jDesktopPane.add(frm);
-                int x = (jDesktopPane.getWidth() / 2) - (frm.getWidth() / 2);
-                int y = (jDesktopPane.getHeight() / 2) - (frm.getHeight() / 2);
-                frm.setLocation(x, y);
-                frm.show();
-            } else {
-                ItemMain frmSe = new ItemMain("EntradaFC", jTxtNome.getText().trim());
-                jDesktopPane.add(frmSe);
-                int x = (jDesktopPane.getWidth() / 2) - (frmSe.getWidth() / 2);
-                int y = (jDesktopPane.getHeight() / 2) - (frmSe.getHeight() / 2);
-                frmSe.setLocation(x, y);
-                frmSe.show();
 
-            }
-        } catch (DaoException ex) {
-            Logger.getLogger(TurmaAlunoMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
+        AlunoMain frmSe = new AlunoMain("TurmaAlunoMain");
+        jDesktopPane.add(frmSe);
+        int x = (jDesktopPane.getWidth() / 2) - (frmSe.getWidth() / 2);
+        int y = (jDesktopPane.getHeight() / 2) - (frmSe.getHeight() / 2);
+        frmSe.setLocation(x, y);
+        frmSe.show();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTxtNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtNomeFocusGained
@@ -774,14 +772,14 @@ public class TurmaAlunoMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTxtCodigoTurmaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /*
-        FornecedorMain frm = new FornecedorMain("EntradaFC");
-        getDesktopPane().add(frm);
-        int x = (getDesktopPane().getWidth() / 2) - (frm.getWidth() / 2);
-        int y = (getDesktopPane().getHeight() / 2) - (frm.getHeight() / 2);
+
+        TurmaMain frm = new TurmaMain("TurmaAlunoMain");
+        jDesktopPane.add(frm);
+        int x = (jDesktopPane.getWidth() / 2) - (frm.getWidth() / 2);
+        int y = (jDesktopPane.getHeight() / 2) - (frm.getHeight() / 2);
         frm.setLocation(x, y);
         frm.show();
-        */
+
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

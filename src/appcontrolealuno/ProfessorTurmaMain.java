@@ -73,6 +73,21 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
         });
 
     }
+        static void setDadosProf(int idprofessor, String nome, String materia) {
+        jTxtidProf.setText(String.valueOf(idprofessor));
+        jTxtNomeProfessor.setText(nome);
+        jTxtMateria.setText(materia);
+        
+        jTxtTurma.requestFocus();
+    }
+     static void setDadosTurma(int idturma, String turma, String serie) {
+        jTxtidTurma.setText(String.valueOf(idturma));
+        jTxtTurma.setText(turma);
+        jTxtSerie.setText(serie);
+        
+        jTxtTurma.requestFocus();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -285,7 +300,7 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
         jLabel11.setText("Professor:");
 
         jTxtNomeProfessor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTxtNomeProfessor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTxtNomeProfessor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTxtNomeProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtNomeProfessorActionPerformed(evt);
@@ -370,31 +385,26 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
                         .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonConfirmaTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jLabel8))
-                                        .addGap(17, 17, 17)
-                                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                                .addComponent(jTxtidTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jTxtSerie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                                .addComponent(jTxtTurma, javax.swing.GroupLayout.Alignment.LEADING))))
-                                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                                        .addComponent(jButtonDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
+                                .addComponent(jButtonDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButtonConfirmaTurma)
+                                .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                    .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel8))
+                                    .addGap(17, 17, 17)
+                                    .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                            .addComponent(jTxtidTurma, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTxtTurma, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                                        .addComponent(jTxtSerie)))))
+                        .addGap(18, 26, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
                         .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,12 +419,14 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
                                         .addComponent(jTxtidProf, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTxtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jTxtNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(428, 428, 428)))
+                            .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTxtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPaneLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jTxtNomeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(78, Short.MAX_VALUE))))
         );
         jDesktopPaneLayout.setVerticalGroup(
@@ -438,7 +450,7 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(3, 3, 3)
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(jTxtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -446,33 +458,33 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel12)))
                         .addGap(42, 42, 42)
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTxtidTurma)
+                                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
                                         .addGap(2, 2, 2)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                                    .addComponent(jTxtidTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel8))
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jTxtTurma)))
                         .addGap(6, 6, 6)
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
                             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(jTxtSerie)))
-                        .addGap(39, 39, 39)
+                        .addGap(37, 37, 37)
                         .addComponent(jButtonConfirmaTurma)
-                        .addGap(54, 54, 54)
+                        .addGap(56, 56, 56)
                         .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -676,28 +688,12 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonDinheiroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     /*
-        try {
-            if (veEstoqueConsulta()) {
-                ItemMain frm = new ItemMain("EntradaFC", jTxtNome.getText().trim());
-                jDesktopPane.add(frm);
-                int x = (jDesktopPane.getWidth() / 2) - (frm.getWidth() / 2);
-                int y = (jDesktopPane.getHeight() / 2) - (frm.getHeight() / 2);
-                frm.setLocation(x, y);
-                frm.show();
-            } else {
-                ItemMain frmSe = new ItemMain("EntradaFC", jTxtNome.getText().trim());
-                jDesktopPane.add(frmSe);
-                int x = (jDesktopPane.getWidth() / 2) - (frmSe.getWidth() / 2);
-                int y = (jDesktopPane.getHeight() / 2) - (frmSe.getHeight() / 2);
-                frmSe.setLocation(x, y);
-                frmSe.show();
-
-            }
-        } catch (DaoException ex) {
-            Logger.getLogger(TurmaAlunoMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
+        TurmaMain frm = new TurmaMain("ProfessorTurmaMain");
+        jDesktopPane.add(frm);
+        int x = (jDesktopPane.getWidth() / 2) - (frm.getWidth() / 2);
+        int y = (jDesktopPane.getHeight() / 2) - (frm.getHeight() / 2);
+        frm.setLocation(x, y);
+        frm.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTxtTurmaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtTurmaFocusGained
@@ -777,15 +773,14 @@ public class ProfessorTurmaMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTxtNomeProfessorActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /*
-        FornecedorMain frm = new FornecedorMain("EntradaFC");
-        getDesktopPane().add(frm);
-        int x = (getDesktopPane().getWidth() / 2) - (frm.getWidth() / 2);
-        int y = (getDesktopPane().getHeight() / 2) - (frm.getHeight() / 2);
+
+        ProfessorMain frm = new ProfessorMain("ProfessorTurmaMain");
+        jDesktopPane.add(frm);
+        int x = (jDesktopPane.getWidth() / 2) - (frm.getWidth() / 2);
+        int y = (jDesktopPane.getHeight() / 2) - (frm.getHeight() / 2);
         frm.setLocation(x, y);
         frm.show();
-        */
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTxtSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSerieActionPerformed

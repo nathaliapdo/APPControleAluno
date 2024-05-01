@@ -6,7 +6,9 @@
 package appcontrolealuno;
 
 import DAO.AlunoDAO;
+import DAO.TurmaDAO;
 import TO.AlunoTO;
+import TO.TurmaTO;
 
 
 import db.DaoException;
@@ -46,7 +48,7 @@ public class AlunoMain extends javax.swing.JInternalFrame {
     private static final long serialVersionUID = -2594306776637231202L;
 
     String fluxo = "", quemChamou = "";
-    boolean retornaDados = false;
+    boolean outroChamou = false;
     NumberFormat duasDecimais = new DecimalFormat("########0.00", new DecimalFormatSymbols(Locale.ENGLISH));
 
     /**
@@ -65,14 +67,13 @@ public class AlunoMain extends javax.swing.JInternalFrame {
         });
     }
 
-    AlunoMain(String quemChamouExterno, String descricaoTD) {
+    AlunoMain(String quemChamouExterno) {
         initComponents();
         lblResult.setText("");
         this.setEnabled(true);
-        retornaDados = true;
+        outroChamou = true;
         quemChamou = quemChamouExterno;
         jInternalFrame1.setVisible(false);
-        jTextPesquisar.setText(descricaoTD);
         botaoPesquisarPressionado();
     }
 
@@ -522,7 +523,7 @@ public class AlunoMain extends javax.swing.JInternalFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnOk)
                     .addComponent(btnSair1))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -567,6 +568,22 @@ public class AlunoMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarKeyPressed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+
+        if ((outroChamou) && (tblResult.getSelectedRow() != -1)) {
+            try {
+                // retornar tuma e serie+
+                AlunoTO to;
+                to = AlunoDAO.detalharAluno(Integer.valueOf(tblResult.getValueAt(tblResult.getSelectedRow(), 0).toString()));
+                
+                if (to != null) {
+                    TurmaAlunoMain.setDadosAluno(to.getIdaluno(), to.getNome(), to.getSexo(), to.getDatanascimento());                                
+                }
+            } catch (DaoException ex) {
+                Logger.getLogger(TurmaMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 

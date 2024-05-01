@@ -5,7 +5,9 @@
  */
 package appcontrolealuno;
 
+import DAO.AlunoDAO;
 import DAO.ProfessorDAO;
+import TO.AlunoTO;
 import TO.ProfessorTO;
 
 
@@ -46,7 +48,7 @@ public class ProfessorMain extends javax.swing.JInternalFrame {
     private static final long serialVersionUID = -2594306776637231202L;
 
     String fluxo = "", quemChamou = "";
-    boolean retornaDados = false;
+    boolean outroChamou = false;
     NumberFormat duasDecimais = new DecimalFormat("########0.00", new DecimalFormatSymbols(Locale.ENGLISH));
 
     /**
@@ -65,14 +67,13 @@ public class ProfessorMain extends javax.swing.JInternalFrame {
         });
     }
 
-    ProfessorMain(String quemChamouExterno, String descricaoTD) {
+    ProfessorMain(String quemChamouExterno) {
         initComponents();
         lblResult.setText("");
         this.setEnabled(true);
-        retornaDados = true;
+        outroChamou = true;
         quemChamou = quemChamouExterno;
         jInternalFrame1.setVisible(false);
-        jTextPesquisar.setText(descricaoTD);
         botaoPesquisarPressionado();
     }
 
@@ -545,6 +546,21 @@ public class ProfessorMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarKeyPressed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+
+        if ((outroChamou) && (tblResult.getSelectedRow() != -1)) {
+            try {
+                // retornar tuma e serie+
+                ProfessorTO to;
+                to = ProfessorDAO.detalharProfessor(Integer.valueOf(tblResult.getValueAt(tblResult.getSelectedRow(), 0).toString()));
+                
+                if (to != null) {
+                    ProfessorTurmaMain.setDadosProf(to.getIdprofessor(), to.getNome(), to.getMateria());                                
+                }
+            } catch (DaoException ex) {
+                Logger.getLogger(TurmaMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 

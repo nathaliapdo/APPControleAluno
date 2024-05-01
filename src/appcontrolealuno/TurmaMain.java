@@ -45,7 +45,7 @@ public class TurmaMain extends javax.swing.JInternalFrame {
     private static final long serialVersionUID = -2594306776637231202L;
 
     String fluxo = "", quemChamou = "";
-    boolean retornaDados = false;
+    boolean outroChamou = false;
     NumberFormat duasDecimais = new DecimalFormat("########0.00", new DecimalFormatSymbols(Locale.ENGLISH));
 
     /**
@@ -56,6 +56,7 @@ public class TurmaMain extends javax.swing.JInternalFrame {
         lblResult.setText("");
         this.setEnabled(true);
         jInternalFrame1.setVisible(false);
+        outroChamou = false;
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -64,14 +65,13 @@ public class TurmaMain extends javax.swing.JInternalFrame {
         });
     }
 
-    TurmaMain(String quemChamouExterno, String descricaoTD) {
+    TurmaMain(String quemChamouExterno) {
         initComponents();
         lblResult.setText("");
         this.setEnabled(true);
-        retornaDados = true;
+        outroChamou = true;
         quemChamou = quemChamouExterno;
         jInternalFrame1.setVisible(false);
-        jTextPesquisar.setText(descricaoTD);
         botaoPesquisarPressionado();
     }
 
@@ -489,7 +489,7 @@ public class TurmaMain extends javax.swing.JInternalFrame {
                     .addComponent(jtxtTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(jtxtSérie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 35, Short.MAX_VALUE)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSair1)
                     .addComponent(jbtnOk))
@@ -510,8 +510,8 @@ public class TurmaMain extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -541,6 +541,27 @@ public class TurmaMain extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarKeyPressed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+
+        if ((outroChamou) && (tblResult.getSelectedRow() != -1)) {
+            try {
+                // retornar tuma e serie+
+                TurmaTO to;
+                to = TurmaDAO.detalharTurma(Integer.valueOf(tblResult.getValueAt(tblResult.getSelectedRow(), 0).toString()));
+                
+                if (to != null) {
+                    if (quemChamou.equals("TurmaAlunoMain")) {
+                       TurmaAlunoMain.setDadosTurma(to.getNumeroturma(), to.getSerie());  
+                    }
+                    if (quemChamou.equals("ProfessorTurmaMain")) {
+                       ProfessorTurmaMain.setDadosTurma(to.getIdturma(), to.getNumeroturma(), to.getSerie());
+                    }                                   
+                }
+            } catch (DaoException ex) {
+                Logger.getLogger(TurmaMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
         dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
